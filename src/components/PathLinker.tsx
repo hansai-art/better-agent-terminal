@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback, useRef, Fragment } from 'react'
+import { useTranslation } from 'react-i18next'
 import hljs from 'highlight.js/lib/core'
 import 'highlight.js/styles/vs2015.css'
 // Register only the languages we actually use (saves ~800KB vs full highlight.js)
@@ -195,6 +196,7 @@ interface FilePreviewModalProps {
 }
 
 export function FilePreviewModal({ filePath, onClose }: FilePreviewModalProps) {
+  const { t } = useTranslation()
   const [content, setContent] = useState<string | null>(null)
   const [imageUrl, setImageUrl] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
@@ -338,21 +340,21 @@ export function FilePreviewModal({ filePath, onClose }: FilePreviewModalProps) {
           <button
             className="path-preview-btn"
             onClick={handleCopyPath}
-            title="Copy file path"
+            title={t('fileTree.copyFilePath')}
           >
             {copied ? '\u2713' : '\u2398'}
           </button>
           <button
             className="path-preview-btn"
             onClick={() => window.electronAPI.shell.openPath(filePath)}
-            title="Open with system default app"
+            title={t('fileTree.openWithDefaultApp')}
           >
             &#8599;
           </button>
           <button
             className="path-preview-btn"
             onClick={() => { setSearchOpen(o => !o); setTimeout(() => searchInputRef.current?.focus(), 50) }}
-            title="Search (Ctrl+F)"
+            title={t('fileTree.searchInPreview')}
           >
             &#128269;
           </button>
@@ -361,24 +363,24 @@ export function FilePreviewModal({ filePath, onClose }: FilePreviewModalProps) {
         {searchOpen && (
           <div className="path-preview-search">
             <input
-              ref={searchInputRef}
-              className="path-preview-search-input"
-              type="text"
-              placeholder="Search..."
-              value={searchQuery}
+               ref={searchInputRef}
+               className="path-preview-search-input"
+               type="text"
+               placeholder={t('fileTree.searchPlaceholder')}
+               value={searchQuery}
               onChange={e => setSearchQuery(e.target.value)}
               onKeyDown={e => {
                 if (e.key === 'Enter') { e.preventDefault(); navigateMatch(e.shiftKey ? -1 : 1) }
                 if (e.key === 'Escape') { e.preventDefault(); setSearchOpen(false); setSearchQuery('') }
               }}
             />
-            {searchQuery && <span className="path-preview-search-count">{matchCount > 0 ? `${currentMatch}/${matchCount}` : 'No results'}</span>}
-            <button className="path-preview-search-nav" onClick={() => navigateMatch(-1)} disabled={matchCount === 0} title="Previous (Shift+Enter)">&uarr;</button>
-            <button className="path-preview-search-nav" onClick={() => navigateMatch(1)} disabled={matchCount === 0} title="Next (Enter)">&darr;</button>
+            {searchQuery && <span className="path-preview-search-count">{matchCount > 0 ? `${currentMatch}/${matchCount}` : t('fileTree.noResults')}</span>}
+            <button className="path-preview-search-nav" onClick={() => navigateMatch(-1)} disabled={matchCount === 0} title={t('fileTree.previousMatch')}>&uarr;</button>
+            <button className="path-preview-search-nav" onClick={() => navigateMatch(1)} disabled={matchCount === 0} title={t('fileTree.nextMatch')}>&darr;</button>
           </div>
         )}
         <div className="path-preview-body" ref={bodyRef}>
-          {loading && <div className="path-preview-status">Loading...</div>}
+          {loading && <div className="path-preview-status">{t('common.loading')}</div>}
           {error && <div className="path-preview-status">{error}</div>}
           {imageUrl && (
             <div className="path-preview-image">

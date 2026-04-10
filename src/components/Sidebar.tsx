@@ -544,7 +544,7 @@ export function Sidebar({
                       key={c.id}
                       className={`color-dot ${ws?.color === c.value ? 'active' : ''}`}
                       style={{ backgroundColor: c.value }}
-                      title={c.label}
+                      title={t(`sidebar.colorNames.${c.id}`)}
                       onClick={(e) => {
                         e.stopPropagation()
                         workspaceStore.setWorkspaceColor(contextMenu.workspaceId, c.value)

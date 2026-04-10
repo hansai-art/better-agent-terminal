@@ -12,8 +12,8 @@ i18next
       'zh-TW': { translation: zhTW },
       'zh-CN': { translation: zhCN },
     },
-    lng: 'en',
-    fallbackLng: 'en',
+    lng: 'zh-TW',
+    fallbackLng: 'zh-TW',
     interpolation: {
       escapeValue: false, // React already escapes
     },

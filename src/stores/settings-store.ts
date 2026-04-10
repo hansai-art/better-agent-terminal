@@ -7,7 +7,7 @@ type Listener = () => void
 const isWindows = typeof navigator !== 'undefined' && navigator.userAgent.includes('Windows');
 
 const defaultSettings: AppSettings = {
-  language: 'en',
+  language: 'zh-TW',
   shell: 'auto',
   customShellPath: '',
   fontSize: 14,

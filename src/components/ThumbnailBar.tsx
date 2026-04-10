@@ -213,7 +213,7 @@ export function ThumbnailBar({
                       >
                         <span className="thumbnail-add-menu-icon" style={{ color: def.color }}>{def.icon}</span>
                         {def.name}
-                        {def.suggested && <span className="thumbnail-add-menu-suggested">suggested</span>}
+                        {def.suggested && <span className="thumbnail-add-menu-suggested">{t('terminal.suggested')}</span>}
                       </div>
                     ))
                   ) : (
@@ -226,7 +226,7 @@ export function ThumbnailBar({
                         >
                           <span className="thumbnail-add-menu-icon" style={{ color: '#d97706' }}>✦</span>
                           Claude Agent V1
-                          <span className="thumbnail-add-menu-suggested">suggested</span>
+                          <span className="thumbnail-add-menu-suggested">{t('terminal.suggested')}</span>
                         </div>
                       )}
                       {onAddClaudeAgentV2 && (
@@ -254,7 +254,7 @@ export function ThumbnailBar({
                         >
                           <span className="thumbnail-add-menu-icon" style={{ color: '#d97706' }}>▶</span>
                           Claude CLI
-                          <span className="thumbnail-add-menu-suggested">suggested</span>
+                          <span className="thumbnail-add-menu-suggested">{t('terminal.suggested')}</span>
                         </div>
                       )}
                       {onAddClaudeCliWorktree && (

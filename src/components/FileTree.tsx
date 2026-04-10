@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 import { HighlightedCode } from './PathLinker'
 import hljs from 'highlight.js/lib/core'
 
@@ -241,6 +242,7 @@ export function MarkdownPreview({ content }: { content: string }) {
 }
 
 function FilePreview({ filePath, fileName, refreshKey }: { filePath: string; fileName: string; refreshKey: number }) {
+  const { t } = useTranslation()
   const [content, setContent] = useState<string | null>(null)
   const [imageUrl, setImageUrl] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
@@ -260,7 +262,9 @@ function FilePreview({ filePath, fileName, refreshKey }: { filePath: string; fil
       window.electronAPI.fs.readFile(filePath).then(result => {
         if (cancelled) return
         if (result.error) {
-          setError(result.error === 'File too large' ? `File too large (${Math.round((result.size || 0) / 1024)}KB)` : result.error)
+          setError(result.error === 'File too large'
+            ? t('fileTree.fileTooLarge', { size: Math.round((result.size || 0) / 1024) })
+            : result.error)
         } else {
           setContent(result.content || '')
         }
@@ -273,21 +277,21 @@ function FilePreview({ filePath, fileName, refreshKey }: { filePath: string; fil
         setLoading(false)
       }).catch(() => {
         if (cancelled) return
-        setError('Failed to load image')
+        setError(t('fileTree.failedToLoadImage'))
         setLoading(false)
       })
     } else if (type === 'pdf') {
       setLoading(false)
     } else {
-      setError('Preview not available for this file type')
+      setError(t('fileTree.previewNotAvailable'))
       setLoading(false)
     }
 
     return () => { cancelled = true }
-  }, [filePath, fileName, refreshKey])
+  }, [filePath, fileName, refreshKey, t])
 
   if (loading) {
-    return <div className="file-preview-status">Loading...</div>
+    return <div className="file-preview-status">{t('common.loading')}</div>
   }
 
   if (error) {
@@ -305,13 +309,13 @@ function FilePreview({ filePath, fileName, refreshKey }: { filePath: string; fil
   if (canPreview(fileName) === 'pdf') {
     return (
       <div className="file-preview-pdf">
-        <iframe
-          src={`file://${filePath}`}
-          style={{ width: '100%', height: '100%', border: 'none' }}
-          title={`PDF Preview: ${fileName}`}
-        />
-      </div>
-    )
+          <iframe
+            src={`file://${filePath}`}
+            style={{ width: '100%', height: '100%', border: 'none' }}
+            title={t('fileTree.pdfPreviewTitle', { fileName })}
+          />
+        </div>
+      )
   }
 
   if (content !== null) {
@@ -319,8 +323,8 @@ function FilePreview({ filePath, fileName, refreshKey }: { filePath: string; fil
       <>
         {isMarkdown && (
           <div className="file-preview-mode-bar">
-            <button className={`git-diff-mode-btn${viewMode === 'rendered' ? ' active' : ''}`} onClick={() => setViewMode('rendered')}>Preview</button>
-            <button className={`git-diff-mode-btn${viewMode === 'source' ? ' active' : ''}`} onClick={() => setViewMode('source')}>Source</button>
+            <button className={`git-diff-mode-btn${viewMode === 'rendered' ? ' active' : ''}`} onClick={() => setViewMode('rendered')}>{t('common.preview')}</button>
+            <button className={`git-diff-mode-btn${viewMode === 'source' ? ' active' : ''}`} onClick={() => setViewMode('source')}>{t('fileTree.source')}</button>
           </div>
         )}
         {isMarkdown && viewMode === 'rendered'
@@ -335,6 +339,7 @@ function FilePreview({ filePath, fileName, refreshKey }: { filePath: string; fil
 }
 
 export function FileTree({ rootPath }: Readonly<FileTreeProps>) {
+  const { t } = useTranslation()
   const [entries, setEntries] = useState<FileEntry[]>([])
   const [loading, setLoading] = useState(true)
   const [selectedFile, setSelectedFile] = useState<FileEntry | null>(null)
@@ -478,11 +483,11 @@ export function FileTree({ rootPath }: Readonly<FileTreeProps>) {
   }, [contextMenu])
 
   if (loading && entries.length === 0) {
-    return <div className="file-tree-empty">Loading...</div>
+    return <div className="file-tree-empty">{t('common.loading')}</div>
   }
 
   if (entries.length === 0) {
-    return <div className="file-tree-empty">No files found</div>
+    return <div className="file-tree-empty">{t('fileTree.noFilesFound')}</div>
   }
 
   const displayEntries = searchResults !== null ? searchResults : entries
@@ -494,14 +499,14 @@ export function FileTree({ rootPath }: Readonly<FileTreeProps>) {
           <input
             className="file-tree-search"
             type="text"
-            placeholder="Search files..."
+            placeholder={t('fileTree.searchFiles')}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
-          <button className="file-tree-refresh-btn" onClick={handleRefresh} title="Refresh">↻</button>
+          <button className="file-tree-refresh-btn" onClick={handleRefresh} title={t('fileTree.refresh')}>↻</button>
         </div>
         <div className="file-tree-list">
-          {searching && <div className="file-tree-item file-tree-loading-row">Searching...</div>}
+          {searching && <div className="file-tree-item file-tree-loading-row">{t('fileTree.searching')}</div>}
           {searchResults !== null ? (
             // Search results: flat list with relative paths
             displayEntries.map(entry => (
@@ -531,7 +536,7 @@ export function FileTree({ rootPath }: Readonly<FileTreeProps>) {
             ))
           )}
           {searchResults !== null && searchResults.length === 0 && !searching && (
-            <div className="file-tree-empty">No matches</div>
+            <div className="file-tree-empty">{t('fileTree.noMatches')}</div>
           )}
         </div>
       </div>
@@ -540,14 +545,14 @@ export function FileTree({ rootPath }: Readonly<FileTreeProps>) {
           <>
             <div className="file-preview-header">
               <span className="file-preview-filename">{selectedFile.name}</span>
-              <button className="file-tree-refresh-btn" onClick={handleRefresh} title="Refresh">↻</button>
+              <button className="file-tree-refresh-btn" onClick={handleRefresh} title={t('fileTree.refresh')}>↻</button>
             </div>
             <div className="file-preview-body">
               <FilePreview filePath={selectedFile.path} fileName={selectedFile.name} refreshKey={refreshKey} />
             </div>
           </>
         ) : (
-          <div className="file-preview-status">Select a file to preview</div>
+          <div className="file-preview-status">{t('fileTree.selectFileToPreview')}</div>
         )}
       </div>
 
@@ -563,7 +568,7 @@ export function FileTree({ rootPath }: Readonly<FileTreeProps>) {
               <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
               <rect x="8" y="2" width="8" height="4" rx="1" ry="1" />
             </svg>
-            Copy Relative Path
+            {t('fileTree.copyRelativePath')}
           </div>
           <div className="context-menu-item" onClick={handleCopyAbsolutePath}>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -572,14 +577,14 @@ export function FileTree({ rootPath }: Readonly<FileTreeProps>) {
               <line x1="8" y1="10" x2="16" y2="10" />
               <line x1="8" y1="14" x2="12" y2="14" />
             </svg>
-            Copy Absolute Path
+            {t('fileTree.copyAbsolutePath')}
           </div>
           <div className="context-menu-divider" />
           <div className="context-menu-item" onClick={handleOpenInExplorer}>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
             </svg>
-            Open in Explorer
+            {t('fileTree.openInExplorer')}
           </div>
         </div>
       )}

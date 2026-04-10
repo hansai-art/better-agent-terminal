@@ -13,7 +13,6 @@
     "loading": "載入中...",
     "preview": "預覽"
   },
-
   "app": {
     "workspaceNotFound": "找不到工作區",
     "workspaceNotFoundDesc": "此分離的工作區可能已被移除。",
@@ -23,7 +22,6 @@
     "remoteConnectionFailedFallback": "遠端連線失敗：{{error}}\n正在切換回本機設定檔。",
     "remoteMissingInfo": "遠端設定檔缺少連線資訊。"
   },
-
   "settings": {
     "title": "設定",
     "shell": "Shell",
@@ -92,9 +90,99 @@
     "lanOnly": "僅限區域網路 — 手機需在同一網段",
     "language": "語言",
     "footerNote": "所有變更會自動儲存。字型變更會立即套用至所有終端。",
-    "failedToStartServer": "啟動伺服器失敗：{{error}}"
+    "failedToStartServer": "啟動伺服器失敗：{{error}}",
+    "languageOptionEnglish": "英文",
+    "languageOptionTraditionalChinese": "繁體中文（台灣）",
+    "languageOptionSimplifiedChinese": "簡體中文",
+    "shellOptionAuto": "自動偵測",
+    "shellOptionCustom": "自訂",
+    "colorPresetNovel": "Novel（預設）",
+    "colorPresetDracula": "Dracula",
+    "colorPresetMonokai": "Monokai",
+    "colorPresetSolarizedDark": "Solarized Dark",
+    "colorPresetNord": "Nord",
+    "colorPresetOneDark": "One Dark",
+    "colorPresetCustom": "自訂",
+    "effortLow": "低",
+    "effortMedium": "中",
+    "effortHigh": "高",
+    "customCliTitle": "自訂 CLI Agent",
+    "customCliHint": "你可以把自己常用的 CLI 工具加進來。加入後，它們會和內建 Agent 一起出現在「新增 Agent」選單。",
+    "customCliRemove": "移除",
+    "customCliNamePlaceholder": "名稱",
+    "customCliIconPlaceholder": "圖示",
+    "customCliCommandPlaceholder": "指令（例如 aider、cursor、cline）",
+    "customCliSandboxFlagPlaceholder": "Sandbox 參數（選填，例如 --sandbox）",
+    "customCliYoloFlagPlaceholder": "YOLO 參數（選填，例如 --yolo）",
+    "addCustomCli": "+ 新增自訂 CLI",
+    "alignLeft": "靠左",
+    "alignCenter": "置中",
+    "alignRight": "靠右",
+    "defaultColor": "預設",
+    "statuslineImportPlaceholder": "sessionId,tokens > cost | prompts",
+    "statuslineItems": {
+      "sessionId": {
+        "label": "Session ID",
+        "description": "SDK 工作階段 ID 的前 8 碼（點擊可恢復）"
+      },
+      "gitBranch": {
+        "label": "Git 分支",
+        "description": "目前的 Git 分支名稱"
+      },
+      "tokens": {
+        "label": "Tokens",
+        "description": "輸入與輸出 token 總數"
+      },
+      "turns": {
+        "label": "回合數",
+        "description": "對話來回次數"
+      },
+      "duration": {
+        "label": "持續時間",
+        "description": "工作階段持續秒數"
+      },
+      "contextPct": {
+        "label": "Context %",
+        "description": "已使用的 context 視窗百分比"
+      },
+      "cost": {
+        "label": "成本",
+        "description": "本次工作階段的總花費（美元）"
+      },
+      "workspace": {
+        "label": "工作區",
+        "description": "目前工作區名稱"
+      },
+      "usage5h": {
+        "label": "5 小時用量",
+        "description": "最近 5 小時的用量百分比"
+      },
+      "usage5hReset": {
+        "label": "5 小時重置",
+        "description": "距離 5 小時用量重置的倒數"
+      },
+      "usage7d": {
+        "label": "7 天用量",
+        "description": "最近 7 天的用量百分比"
+      },
+      "usage7dReset": {
+        "label": "7 天重置",
+        "description": "距離 7 天用量重置的倒數"
+      },
+      "maxOut": {
+        "label": "最大輸出",
+        "description": "目前模型可輸出的最大 token 數"
+      },
+      "cacheEff": {
+        "label": "快取效率",
+        "description": "快取讀取效率（cache_read / total_input）"
+      },
+      "prompts": {
+        "label": "提示詞",
+        "description": "查看提示詞紀錄的連結"
+      }
+    }
   },
-
   "sidebar": {
     "workspaces": "工作區",
     "all": "全部",
@@ -115,9 +203,18 @@
     "detachToWindow": "分離至新視窗",
     "wakeAgent": "喚醒 Agent",
     "restAgent": "休眠 Agent",
-    "closeWorkspace": "關閉工作區"
+    "closeWorkspace": "關閉工作區",
+    "colorNames": {
+      "red": "紅色",
+      "orange": "橘色",
+      "yellow": "黃色",
+      "green": "綠色",
+      "blue": "藍色",
+      "purple": "紫色",
+      "pink": "粉紅色",
+      "gray": "灰色"
+    }
   },
-
   "profiles": {
     "title": "設定檔",
     "saveCurrent": "儲存目前狀態",
@@ -147,14 +244,12 @@
     "fetchingProfiles": "取得中...",
     "currentTarget": "目前目標"
   },
-
   "workspace": {
     "terminal": "終端",
     "files": "檔案",
     "git": "Git",
     "github": "GitHub"
   },
-
   "github": {
     "pullRequests": "Pull Requests",
     "issues": "Issues",
@@ -183,7 +278,6 @@
     "commentPosted": "已發佈留言",
     "commentError": "發佈留言失敗"
   },
-
   "terminal": {
     "doubleClickToRename": "雙擊以重新命名",
     "hidePromptBox": "隱藏提示輸入框",
@@ -194,14 +288,13 @@
     "addTerminalOrAgent": "新增終端或 Agent",
     "terminalLabel": "終端",
     "expandThumbnails": "展開縮圖",
-    "collapsePanel": "收合面板"
+    "collapsePanel": "收合面板",
+    "suggested": "推薦"
   },
-
   "dialogs": {
     "closeCodeAgent": "關閉 Code Agent？",
     "closeCodeAgentConfirm": "確定要關閉 Code Agent 終端嗎？任何正在執行的程序將被終止。"
   },
-
   "snippets": {
     "title": "程式碼片段",
     "newSnippet": "新增片段",
@@ -234,7 +327,6 @@
     "scopeWorkspace": "工作區",
     "scopeToWorkspace": "限定此工作區"
   },
-
   "skills": {
     "title": "Skills",
     "searchSkills": "搜尋 skills...",
@@ -247,7 +339,6 @@
     "noMatchingSkills": "沒有符合的 skills",
     "expandSkills": "展開 Skills"
   },
-
   "agents": {
     "title": "Agents",
     "searchAgents": "搜尋 agents...",
@@ -255,7 +346,6 @@
     "noSession": "啟動 Agent session 以查看可用的 agents。",
     "noMatchingAgents": "沒有符合的 agents"
   },
-
   "about": {
     "title": "關於",
     "appName": "Better Agent Terminal",
@@ -265,7 +355,6 @@
     "github": "GitHub",
     "builtWith": "使用 Electron、React 和 xterm.js 建置"
   },
-
   "update": {
     "newVersionAvailable": "有新版本可用！",
     "currentVersion": "目前版本：v{{version}}",
@@ -273,7 +362,6 @@
     "whatsNew": "更新內容：",
     "viewOnGithub": "在 GitHub 上查看"
   },
-
   "envVars": {
     "title": "環境變數",
     "workspaceHint": "設定此工作區的環境變數。這些變數將套用至此工作區中的所有終端。",
@@ -282,7 +370,6 @@
     "variableName": "變數名稱",
     "value": "值"
   },
-
   "git": {
     "commits": "提交紀錄",
     "refresh": "重新整理",
@@ -300,9 +387,9 @@
     "justNow": "剛才",
     "minutesAgo": "{{count}} 分鐘前",
     "hoursAgo": "{{count}} 小時前",
-    "daysAgo": "{{count}} 天前"
+    "daysAgo": "{{count}} 天前",
+    "main": "主工作區"
   },
-
   "claude": {
     "thinking": "思考中",
     "loadOlderMessages": "載入較舊的訊息（{{count}} 則已封存）",
@@ -374,9 +461,48 @@
     "placeholderStreaming": "按 Esc 暫停，雙擊 Esc 停止...",
     "permissionClickToCycle": "權限：{{mode}}（點擊切換）",
     "modelClickToSelect": "模型：{{model}}（點擊選擇）",
-    "clickToCopy": "點擊複製"
+    "clickToCopy": "點擊複製",
+    "permissionModeDefault": "✏ 修改前先詢問",
+    "permissionModeAcceptEdits": "✏ 自動接受修改",
+    "permissionModeBypassPermissions": "⚠ 略過權限確認",
+    "permissionModeBypassPlan": "📋 計畫模式（自動批准）",
+    "permissionModePlan": "📋 計畫模式",
+    "exitPlan": "離開計畫模式",
+    "enterPlan": "進入計畫模式",
+    "planTitle": "計畫",
+    "viewPlan": "查看計畫",
+    "taskLabel": "任務",
+    "agentLabel": "Agent",
+    "taskPromptTitle": "任務提示詞",
+    "taskResultTitle": "任務結果",
+    "taskOutputResultTitle": "TaskOutput 結果",
+    "viewPromptLines": "查看提示詞（{{count}} 行）",
+    "viewResultLines": "查看結果（{{count}} 行）",
+    "fromTask": "來自任務",
+    "editLabel": "編輯",
+    "writeLabel": "寫入",
+    "collapse": "收合",
+    "showAllLines": "顯示全部 {{count}} 行...",
+    "taskOutputLabel": "TaskOutput",
+    "deferred": "延後載入",
+    "reason": "原因",
+    "in": "輸入",
+    "linesUnit": "行",
+    "lineCount": "{{count}} 行",
+    "systemReminderCount": "系統提醒（{{count}}）",
+    "modelGroupBuiltin": "Better Agent Terminal 內建",
+    "modelGroupSdk": "Claude Agent",
+    "noChangesDetectedInWorktree": "在 worktree 中沒有偵測到變更。",
+    "viewWorktreeDiff": "查看 worktree 與來源分支的差異",
+    "confirmMergeWorktree": "要把 {{branch}} 合併到 {{sourceBranch}} 嗎？",
+    "fillMergeCommand": "替 Claude 填入要在主專案執行的合併指令",
+    "confirmDiscardWorktree": "要丟棄這個 worktree 和它的所有變更嗎？",
+    "worktreeDiscarded": "🗑️ 已丟棄 worktree。",
+    "discardWorktreeAndDeleteBranch": "丟棄 worktree 並刪除分支",
+    "contextUsageTitle": "Context 使用量 — {{model}}",
+    "memoryFiles": "記憶檔案",
+    "mcpTools": "MCP 工具"
   },
-
   "promptBox": {
     "placeholder": "在此輸入您的提示...",
     "placeholderWithImage": "新增文字（選填），Ctrl+Enter 傳送",
@@ -384,5 +510,28 @@
     "imageAttached": "已附加圖片",
     "removeImage": "移除圖片",
     "hint": "Ctrl+Enter 傳送 · Ctrl+V 貼上圖片 · ↑↓ 瀏覽歷史"
+  },
+  "fileTree": {
+    "fileTooLarge": "檔案太大（{{size}}KB）",
+    "failedToLoadImage": "載入圖片失敗",
+    "previewNotAvailable": "這個檔案類型目前無法預覽",
+    "pdfPreviewTitle": "PDF 預覽：{{fileName}}",
+    "source": "原始碼",
+    "noFilesFound": "找不到檔案",
+    "searchFiles": "搜尋檔案...",
+    "refresh": "重新整理",
+    "searching": "搜尋中...",
+    "noMatches": "沒有符合的結果",
+    "selectFileToPreview": "請先選一個檔案來預覽",
+    "copyRelativePath": "複製相對路徑",
+    "copyAbsolutePath": "複製絕對路徑",
+    "openInExplorer": "在檔案管理員中開啟",
+    "copyFilePath": "複製檔案路徑",
+    "openWithDefaultApp": "用系統預設程式開啟",
+    "searchInPreview": "搜尋（Ctrl+F）",
+    "searchPlaceholder": "搜尋...",
+    "noResults": "沒有結果",
+    "previousMatch": "上一筆（Shift+Enter）",
+    "nextMatch": "下一筆（Enter）"
   }
 }

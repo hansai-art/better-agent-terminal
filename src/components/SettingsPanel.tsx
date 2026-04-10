@@ -75,6 +75,24 @@ export function SettingsPanel({ onClose }: SettingsPanelProps) {
   // Get current platform for filtering shell options
   const platform = window.electronAPI?.platform || 'darwin'
   const platformShellOptions = SHELL_OPTIONS.filter(opt => opt.platforms.includes(platform))
+  const shellOptionLabels: Partial<Record<ShellType, string>> = {
+    auto: t('settings.shellOptionAuto'),
+    custom: t('settings.shellOptionCustom'),
+  }
+  const colorPresetLabels: Partial<Record<ColorPresetId, string>> = {
+    novel: t('settings.colorPresetNovel'),
+    dracula: t('settings.colorPresetDracula'),
+    monokai: t('settings.colorPresetMonokai'),
+    'solarized-dark': t('settings.colorPresetSolarizedDark'),
+    nord: t('settings.colorPresetNord'),
+    'one-dark': t('settings.colorPresetOneDark'),
+    custom: t('settings.colorPresetCustom'),
+  }
+  const statuslineDefs = STATUSLINE_ITEMS.map(def => ({
+    ...def,
+    label: t(`settings.statuslineItems.${def.id}.label`),
+    description: t(`settings.statuslineItems.${def.id}.description`),
+  }))
 
   useEffect(() => {
     return settingsStore.subscribe(() => {
@@ -230,9 +248,9 @@ export function SettingsPanel({ onClose }: SettingsPanelProps) {
                   i18next.changeLanguage(value)
                 }}
               >
-                <option value="en">English</option>
-                <option value="zh-TW">繁體中文</option>
-                <option value="zh-CN">简体中文</option>
+                <option value="en">{t('settings.languageOptionEnglish')}</option>
+                <option value="zh-TW">{t('settings.languageOptionTraditionalChinese')}</option>
+                <option value="zh-CN">{t('settings.languageOptionSimplifiedChinese')}</option>
               </select>
             </div>
           </div>
@@ -246,7 +264,7 @@ export function SettingsPanel({ onClose }: SettingsPanelProps) {
                 onChange={e => handleShellChange(e.target.value as ShellType)}
               >
                 {platformShellOptions.map(opt => (
-                  <option key={opt.id} value={opt.id}>{opt.name}</option>
+                  <option key={opt.id} value={opt.id}>{shellOptionLabels[opt.id] || opt.name}</option>
                 ))}
               </select>
             </div>
@@ -357,17 +375,17 @@ export function SettingsPanel({ onClose }: SettingsPanelProps) {
                 value={settings.defaultEffort || 'medium'}
                 onChange={e => settingsStore.setDefaultEffort(e.target.value as 'low' | 'medium' | 'high')}
               >
-                <option value="low">Low</option>
-                <option value="medium">Medium</option>
-                <option value="high">High</option>
+                <option value="low">{t('settings.effortLow')}</option>
+                <option value="medium">{t('settings.effortMedium')}</option>
+                <option value="high">{t('settings.effortHigh')}</option>
               </select>
               <p className="settings-hint">{t('settings.defaultEffortHint')}</p>
             </div>
 
             {/* Custom CLI Agents */}
             <div className="settings-group">
-              <label>Custom CLI Agents</label>
-              <p className="settings-hint">Add your own CLI agents. They will appear in the add-agent menu alongside built-in agents.</p>
+              <label>{t('settings.customCliTitle')}</label>
+              <p className="settings-hint">{t('settings.customCliHint')}</p>
               {customClis.length > 0 && (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', marginBottom: '8px' }}>
                   {customClis.map(cli => (
@@ -383,7 +401,7 @@ export function SettingsPanel({ onClose }: SettingsPanelProps) {
                           await window.electronAPI.agent.saveCustomClis()
                           setCustomClis(prev => prev.filter(c => c.id !== cli.id))
                         }}
-                        title="Remove"
+                        title={t('settings.customCliRemove')}
                       >×</button>
                     </div>
                   ))}
@@ -392,17 +410,17 @@ export function SettingsPanel({ onClose }: SettingsPanelProps) {
               {showAddCustomCli ? (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', padding: '8px', border: '1px solid var(--border-color)', borderRadius: '4px' }}>
                   <div style={{ display: 'flex', gap: '6px' }}>
-                    <input type="text" placeholder="Name" value={newCli.name} onChange={e => setNewCli(p => ({ ...p, name: e.target.value, id: e.target.value.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '') + '-cli' }))} style={{ flex: 1 }} />
-                    <input type="text" placeholder="Icon" value={newCli.icon} onChange={e => setNewCli(p => ({ ...p, icon: e.target.value }))} style={{ width: '40px', textAlign: 'center' }} />
+                    <input type="text" placeholder={t('settings.customCliNamePlaceholder')} value={newCli.name} onChange={e => setNewCli(p => ({ ...p, name: e.target.value, id: e.target.value.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '') + '-cli' }))} style={{ flex: 1 }} />
+                    <input type="text" placeholder={t('settings.customCliIconPlaceholder')} value={newCli.icon} onChange={e => setNewCli(p => ({ ...p, icon: e.target.value }))} style={{ width: '40px', textAlign: 'center' }} />
                     <input type="color" value={newCli.color} onChange={e => setNewCli(p => ({ ...p, color: e.target.value }))} style={{ width: '36px', padding: '2px' }} />
                   </div>
-                  <input type="text" placeholder="Command (e.g. aider, cursor, cline)" value={newCli.command} onChange={e => setNewCli(p => ({ ...p, command: e.target.value }))} />
+                  <input type="text" placeholder={t('settings.customCliCommandPlaceholder')} value={newCli.command} onChange={e => setNewCli(p => ({ ...p, command: e.target.value }))} />
                   <div style={{ display: 'flex', gap: '6px' }}>
-                    <input type="text" placeholder="Sandbox flag (optional, e.g. --sandbox)" value={newCli.sandboxFlag || ''} onChange={e => setNewCli(p => ({ ...p, sandboxFlag: e.target.value || undefined }))} style={{ flex: 1 }} />
-                    <input type="text" placeholder="YOLO flag (optional, e.g. --yolo)" value={newCli.yoloFlag || ''} onChange={e => setNewCli(p => ({ ...p, yoloFlag: e.target.value || undefined }))} style={{ flex: 1 }} />
+                    <input type="text" placeholder={t('settings.customCliSandboxFlagPlaceholder')} value={newCli.sandboxFlag || ''} onChange={e => setNewCli(p => ({ ...p, sandboxFlag: e.target.value || undefined }))} style={{ flex: 1 }} />
+                    <input type="text" placeholder={t('settings.customCliYoloFlagPlaceholder')} value={newCli.yoloFlag || ''} onChange={e => setNewCli(p => ({ ...p, yoloFlag: e.target.value || undefined }))} style={{ flex: 1 }} />
                   </div>
                   <div style={{ display: 'flex', gap: '6px', justifyContent: 'flex-end' }}>
-                    <button className="action-btn" onClick={() => { setShowAddCustomCli(false); setNewCli({ id: '', name: '', icon: '▸', color: '#888888', command: '' }) }}>Cancel</button>
+                    <button className="action-btn" onClick={() => { setShowAddCustomCli(false); setNewCli({ id: '', name: '', icon: '▸', color: '#888888', command: '' }) }}>{t('common.cancel')}</button>
                     <button
                       className="action-btn"
                       disabled={!newCli.name || !newCli.command}
@@ -415,11 +433,11 @@ export function SettingsPanel({ onClose }: SettingsPanelProps) {
                         setNewCli({ id: '', name: '', icon: '▸', color: '#888888', command: '' })
                         setShowAddCustomCli(false)
                       }}
-                    >Add</button>
+                    >{t('common.create')}</button>
                   </div>
                 </div>
               ) : (
-                <button className="action-btn" onClick={() => setShowAddCustomCli(true)} style={{ alignSelf: 'flex-start' }}>+ Add Custom CLI</button>
+                <button className="action-btn" onClick={() => setShowAddCustomCli(true)} style={{ alignSelf: 'flex-start' }}>{t('settings.addCustomCli')}</button>
               )}
             </div>
           </div>
@@ -518,7 +536,7 @@ export function SettingsPanel({ onClose }: SettingsPanelProps) {
               >
                 {COLOR_PRESETS.map(preset => (
                   <option key={preset.id} value={preset.id}>
-                    {preset.name}
+                    {colorPresetLabels[preset.id] || preset.name}
                   </option>
                 ))}
               </select>
@@ -590,7 +608,7 @@ export function SettingsPanel({ onClose }: SettingsPanelProps) {
                   color: terminalColors.foreground
                 }}
               >
-                $ echo "Hello World" 你好世界 0123456789
+                $ echo "哈囉世界" 你好世界 0123456789
               </div>
             </div>
           </div>
@@ -603,7 +621,7 @@ export function SettingsPanel({ onClose }: SettingsPanelProps) {
             </p>
             <div className="statusline-config-list">
               {slItems.map(item => {
-                const def = STATUSLINE_ITEMS.find(d => d.id === item.id)
+                const def = statuslineDefs.find(d => d.id === item.id)
                 if (!def) return null
                 return (
                   <div key={item.id}
@@ -644,7 +662,7 @@ export function SettingsPanel({ onClose }: SettingsPanelProps) {
                             const updated = slItems.map(i => i.id === item.id ? { ...i, align: a } : i)
                             setSlItems(updated); settingsStore.setStatuslineItems(updated)
                           }}
-                          title={a}
+                          title={a === 'left' ? t('settings.alignLeft') : a === 'center' ? t('settings.alignCenter') : t('settings.alignRight')}
                         >{a === 'left' ? 'L' : a === 'center' ? 'C' : 'R'}</button>
                       ))}
                     </span>
@@ -666,7 +684,7 @@ export function SettingsPanel({ onClose }: SettingsPanelProps) {
                             const updated = slItems.map(i => i.id === item.id ? { ...i, color: c || undefined } : i)
                             setSlItems(updated); settingsStore.setStatuslineItems(updated)
                           }}
-                          title={c || 'Default'}
+                          title={c || t('settings.defaultColor')}
                         />
                       ))}
                       <input
@@ -696,7 +714,7 @@ export function SettingsPanel({ onClose }: SettingsPanelProps) {
                   <input
                     value={slImportText}
                     onChange={e => setSlImportText(e.target.value)}
-                    placeholder="sessionId,tokens > cost | prompts"
+                    placeholder={t('settings.statuslineImportPlaceholder')}
                     onKeyDown={e => {
                       if (e.key === 'Enter' && slImportText.trim()) {
                         const parsed = parseStatuslineTemplate(slImportText.trim())
