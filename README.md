@@ -119,6 +119,45 @@ npm run dev
 
 ## 新手第一次打開後，請照這個順序做
 
+### 第零步：綁定你的 Claude 帳號（最重要，不可跳過）
+
+Better Agent Terminal 依賴 **Claude Code** 來驅動 AI 功能，所以你需要先有一個 Claude 帳號並完成登入。
+
+#### 1. 建立 Claude 帳號
+
+如果你還沒有帳號，請先到 [https://claude.ai](https://claude.ai) 註冊。
+
+#### 2. 訂閱方案（擇一即可）
+
+| 方案 | 說明 | 適合對象 |
+|---|---|---|
+| **Claude Pro / Max**（訂閱制）| 每月固定費用，不用管 token 用量 | 想輕鬆開始的新手 |
+| **Claude API Key**（按量計費）| 依實際用量付費，需要另外申請 | 有開發需求的進階使用者 |
+
+> 訂閱或申請 API Key 請前往：[https://claude.ai/settings/billing](https://claude.ai/settings/billing)
+
+#### 3. 在 App 裡登入帳號
+
+1. 打開 Better Agent Terminal，新增任一工作區（見下方「第一步」）
+2. 點選工作區內的 **Claude Agent 面板**（左側面板或頂部分頁切換進去）
+3. 在下方輸入框輸入：
+   ```
+   /login
+   ```
+4. App 會開啟瀏覽器讓你完成 OAuth 授權，授權後回到 App 即完成綁定
+
+#### 4. 確認登入狀態
+
+輸入以下指令確認：
+```
+/whoami
+```
+如果看到你的 email 和方案資訊（例如 `you@example.com (claude_ai, pro)`），代表登入成功。
+
+> **沒看到帳號資訊？** 再輸入 `/login` 重新授權一次，或確認你的 Claude 帳號已有有效訂閱。
+
+---
+
 ### 第一步：新增一個工作區
 1. 看左邊側邊欄
 2. 點 **「+ 新增工作區」**
