@@ -111,7 +111,7 @@ export function GitPanel({ workspaceFolderPath, worktreePaths = [] }: Readonly<G
 
   // Build path options: main + worktrees
   const pathOptions = [
-    { path: workspaceFolderPath, label: 'Main' },
+    { path: workspaceFolderPath, label: t('git.main') },
     ...worktreePaths.map(w => ({ path: w.path, label: `🌳 ${w.branch}` })),
   ]
   const hasWorktrees = worktreePaths.length > 0

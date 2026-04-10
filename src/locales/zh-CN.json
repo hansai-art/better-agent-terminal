@@ -90,7 +90,98 @@
     "lanOnly": "仅限局域网 — 手机需在同一网段",
     "language": "语言",
     "footerNote": "所有变更会自动保存。字体变更会立即应用至所有终端。",
-    "failedToStartServer": "启动服务器失败：{{error}}"
+    "failedToStartServer": "启动服务器失败：{{error}}",
+    "languageOptionEnglish": "英文",
+    "languageOptionTraditionalChinese": "繁体中文（台湾）",
+    "languageOptionSimplifiedChinese": "简体中文",
+    "shellOptionAuto": "自动检测",
+    "shellOptionCustom": "自定义",
+    "colorPresetNovel": "Novel（默认）",
+    "colorPresetDracula": "Dracula",
+    "colorPresetMonokai": "Monokai",
+    "colorPresetSolarizedDark": "Solarized Dark",
+    "colorPresetNord": "Nord",
+    "colorPresetOneDark": "One Dark",
+    "colorPresetCustom": "自定义",
+    "effortLow": "低",
+    "effortMedium": "中",
+    "effortHigh": "高",
+    "customCliTitle": "自定义 CLI Agent",
+    "customCliHint": "你可以把常用的 CLI 工具加进来。加入后，它们会和内建 Agent 一起出现在“新增 Agent”菜单。",
+    "customCliRemove": "移除",
+    "customCliNamePlaceholder": "名称",
+    "customCliIconPlaceholder": "图标",
+    "customCliCommandPlaceholder": "命令（例如 aider、cursor、cline）",
+    "customCliSandboxFlagPlaceholder": "Sandbox 参数（选填，例如 --sandbox）",
+    "customCliYoloFlagPlaceholder": "YOLO 参数（选填，例如 --yolo）",
+    "addCustomCli": "+ 新增自定义 CLI",
+    "alignLeft": "靠左",
+    "alignCenter": "居中",
+    "alignRight": "靠右",
+    "defaultColor": "默认",
+    "statuslineImportPlaceholder": "sessionId,tokens > cost | prompts",
+    "statuslineItems": {
+      "sessionId": {
+        "label": "Session ID",
+        "description": "SDK 会话 ID 的前 8 位（点击可恢复）"
+      },
+      "gitBranch": {
+        "label": "Git 分支",
+        "description": "当前 Git 分支名称"
+      },
+      "tokens": {
+        "label": "Tokens",
+        "description": "输入与输出 token 总数"
+      },
+      "turns": {
+        "label": "轮次",
+        "description": "对话往返次数"
+      },
+      "duration": {
+        "label": "持续时间",
+        "description": "会话持续秒数"
+      },
+      "contextPct": {
+        "label": "Context %",
+        "description": "已使用的 context 窗口百分比"
+      },
+      "cost": {
+        "label": "成本",
+        "description": "本次会话总花费（美元）"
+      },
+      "workspace": {
+        "label": "工作区",
+        "description": "当前工作区名称"
+      },
+      "usage5h": {
+        "label": "5 小时用量",
+        "description": "最近 5 小时的用量百分比"
+      },
+      "usage5hReset": {
+        "label": "5 小时重置",
+        "description": "距离 5 小时用量重置的倒计时"
+      },
+      "usage7d": {
+        "label": "7 天用量",
+        "description": "最近 7 天的用量百分比"
+      },
+      "usage7dReset": {
+        "label": "7 天重置",
+        "description": "距离 7 天用量重置的倒计时"
+      },
+      "maxOut": {
+        "label": "最大输出",
+        "description": "当前模型可输出的最大 token 数"
+      },
+      "cacheEff": {
+        "label": "缓存效率",
+        "description": "缓存读取效率（cache_read / total_input）"
+      },
+      "prompts": {
+        "label": "提示词",
+        "description": "查看提示词历史的链接"
+      }
+    }
   },
   "sidebar": {
     "workspaces": "工作区",
@@ -112,7 +203,17 @@
     "detachToWindow": "分离至新窗口",
     "wakeAgent": "唤醒 Agent",
     "restAgent": "休眠 Agent",
-    "closeWorkspace": "关闭工作区"
+    "closeWorkspace": "关闭工作区",
+    "colorNames": {
+      "red": "红色",
+      "orange": "橙色",
+      "yellow": "黄色",
+      "green": "绿色",
+      "blue": "蓝色",
+      "purple": "紫色",
+      "pink": "粉红色",
+      "gray": "灰色"
+    }
   },
   "profiles": {
     "title": "配置文件",
@@ -149,7 +250,6 @@
     "git": "Git",
     "github": "GitHub"
   },
-
   "github": {
     "pullRequests": "Pull Requests",
     "issues": "Issues",
@@ -172,7 +272,6 @@
     "reviews": "审查",
     "fetchError": "从 GitHub 获取数据失败"
   },
-
   "terminal": {
     "doubleClickToRename": "双击以重命名",
     "hidePromptBox": "隐藏提示输入框",
@@ -183,7 +282,8 @@
     "addTerminalOrAgent": "新增终端或 Agent",
     "terminalLabel": "终端",
     "expandThumbnails": "展开缩略图",
-    "collapsePanel": "收起面板"
+    "collapsePanel": "收起面板",
+    "suggested": "推荐"
   },
   "dialogs": {
     "closeCodeAgent": "关闭 Code Agent？",
@@ -233,7 +333,6 @@
     "noMatchingSkills": "没有匹配的 skills",
     "expandSkills": "展开 Skills"
   },
-
   "agents": {
     "title": "Agents",
     "searchAgents": "搜索 agents...",
@@ -241,7 +340,6 @@
     "noSession": "启动 Agent session 以查看可用的 agents。",
     "noMatchingAgents": "没有匹配的 agents"
   },
-
   "about": {
     "title": "关于",
     "appName": "Better Agent Terminal",
@@ -283,7 +381,8 @@
     "justNow": "刚才",
     "minutesAgo": "{{count}} 分钟前",
     "hoursAgo": "{{count}} 小时前",
-    "daysAgo": "{{count}} 天前"
+    "daysAgo": "{{count}} 天前",
+    "main": "主工作区"
   },
   "claude": {
     "thinking": "思考中",
@@ -356,7 +455,47 @@
     "placeholderStreaming": "按 Esc 暂停，双击 Esc 停止...",
     "permissionClickToCycle": "权限：{{mode}}（点击切换）",
     "modelClickToSelect": "模型：{{model}}（点击选择）",
-    "clickToCopy": "点击复制"
+    "clickToCopy": "点击复制",
+    "permissionModeDefault": "✏ 修改前先询问",
+    "permissionModeAcceptEdits": "✏ 自动接受修改",
+    "permissionModeBypassPermissions": "⚠ 跳过权限确认",
+    "permissionModeBypassPlan": "📋 计划模式（自动批准）",
+    "permissionModePlan": "📋 计划模式",
+    "exitPlan": "退出计划模式",
+    "enterPlan": "进入计划模式",
+    "planTitle": "计划",
+    "viewPlan": "查看计划",
+    "taskLabel": "任务",
+    "agentLabel": "Agent",
+    "taskPromptTitle": "任务提示词",
+    "taskResultTitle": "任务结果",
+    "taskOutputResultTitle": "TaskOutput 结果",
+    "viewPromptLines": "查看提示词（{{count}} 行）",
+    "viewResultLines": "查看结果（{{count}} 行）",
+    "fromTask": "来自任务",
+    "editLabel": "编辑",
+    "writeLabel": "写入",
+    "collapse": "收起",
+    "showAllLines": "显示全部 {{count}} 行...",
+    "taskOutputLabel": "TaskOutput",
+    "deferred": "延后加载",
+    "reason": "原因",
+    "in": "输入",
+    "linesUnit": "行",
+    "lineCount": "{{count}} 行",
+    "systemReminderCount": "系统提醒（{{count}}）",
+    "modelGroupBuiltin": "Better Agent Terminal 内建",
+    "modelGroupSdk": "Claude Agent",
+    "noChangesDetectedInWorktree": "在 worktree 中没有检测到变更。",
+    "viewWorktreeDiff": "查看 worktree 与来源分支的差异",
+    "confirmMergeWorktree": "要把 {{branch}} 合并到 {{sourceBranch}} 吗？",
+    "fillMergeCommand": "替 Claude 填入要在主项目执行的合并命令",
+    "confirmDiscardWorktree": "要丢弃这个 worktree 以及它的所有变更吗？",
+    "worktreeDiscarded": "🗑️ 已丢弃 worktree。",
+    "discardWorktreeAndDeleteBranch": "丢弃 worktree 并删除分支",
+    "contextUsageTitle": "Context 使用量 — {{model}}",
+    "memoryFiles": "记忆文件",
+    "mcpTools": "MCP 工具"
   },
   "promptBox": {
     "placeholder": "在此输入您的提示...",
@@ -365,5 +504,28 @@
     "imageAttached": "已附加图片",
     "removeImage": "移除图片",
     "hint": "Ctrl+Enter 发送 · Ctrl+V 粘贴图片 · ↑↓ 浏览历史"
+  },
+  "fileTree": {
+    "fileTooLarge": "文件太大（{{size}}KB）",
+    "failedToLoadImage": "加载图片失败",
+    "previewNotAvailable": "这种文件类型暂时无法预览",
+    "pdfPreviewTitle": "PDF 预览：{{fileName}}",
+    "source": "源码",
+    "noFilesFound": "找不到文件",
+    "searchFiles": "搜索文件...",
+    "refresh": "刷新",
+    "searching": "搜索中...",
+    "noMatches": "没有匹配结果",
+    "selectFileToPreview": "请先选择一个文件进行预览",
+    "copyRelativePath": "复制相对路径",
+    "copyAbsolutePath": "复制绝对路径",
+    "openInExplorer": "在文件管理器中打开",
+    "copyFilePath": "复制文件路径",
+    "openWithDefaultApp": "用系统默认程序打开",
+    "searchInPreview": "搜索（Ctrl+F）",
+    "searchPlaceholder": "搜索...",
+    "noResults": "没有结果",
+    "previousMatch": "上一条（Shift+Enter）",
+    "nextMatch": "下一条（Enter）"
   }
 }

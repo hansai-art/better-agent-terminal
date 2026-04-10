@@ -13,7 +13,6 @@
     "loading": "Loading...",
     "preview": "Preview"
   },
-
   "app": {
     "workspaceNotFound": "Workspace not found",
     "workspaceNotFoundDesc": "This detached workspace may have been removed.",
@@ -23,7 +22,6 @@
     "remoteConnectionFailedFallback": "Remote connection failed: {{error}}\nSwitching back to local profile.",
     "remoteMissingInfo": "Remote profile is missing connection info."
   },
-
   "settings": {
     "title": "Settings",
     "shell": "Shell",
@@ -68,7 +66,7 @@
     "statuslineCustomColor": "Custom color",
     "statuslineCurrentTemplate": "Current template string",
     "environmentVariables": "Environment Variables",
-    "globalEnvVarsHint": "Global environment variables applied to ALL workspaces. Workspace-specific variables (\u2699 button) will override these.",
+    "globalEnvVarsHint": "Global environment variables applied to ALL workspaces. Workspace-specific variables (⚙ button) will override these.",
     "remoteAccess": "Remote Access",
     "remoteAccessHint": "Allow other BAT instances or mobile devices to remotely connect and control this host. See",
     "remoteAccessReadme": "README",
@@ -79,7 +77,7 @@
     "connectedAt": "connected {{time}}",
     "port": "Port",
     "startServer": "Start Server",
-    "serverWarning": "\u26a0 After starting, any device with the Token can fully control BAT on this host. Make sure your network environment is secure.",
+    "serverWarning": "⚠ After starting, any device with the Token can fully control BAT on this host. Make sure your network environment is secure.",
     "connectedToRemote": "Connected to remote: {{host}}:{{port}}",
     "mobileConnect": "Mobile Connect",
     "mobileConnectExperimental": "(Experimental)",
@@ -87,14 +85,104 @@
     "mobileConnectSeeReadme": "See",
     "generateQrCode": "Generate QR Code",
     "generating": "Generating...",
-    "qrWarning": "\u26a0 This will start a WebSocket Server allowing external connections. Make sure your network environment is secure before using.",
+    "qrWarning": "⚠ This will start a WebSocket Server allowing external connections. Make sure your network environment is secure before using.",
     "viaTailscale": "via Tailscale",
-    "lanOnly": "LAN only \u2014 phone must be on the same network",
+    "lanOnly": "LAN only — phone must be on the same network",
     "language": "Language",
     "footerNote": "Changes are saved automatically. Font changes apply immediately to all terminals.",
-    "failedToStartServer": "Failed to start server: {{error}}"
+    "failedToStartServer": "Failed to start server: {{error}}",
+    "languageOptionEnglish": "English",
+    "languageOptionTraditionalChinese": "Traditional Chinese (Taiwan)",
+    "languageOptionSimplifiedChinese": "Simplified Chinese",
+    "shellOptionAuto": "Auto Detect",
+    "shellOptionCustom": "Custom",
+    "colorPresetNovel": "Novel (Default)",
+    "colorPresetDracula": "Dracula",
+    "colorPresetMonokai": "Monokai",
+    "colorPresetSolarizedDark": "Solarized Dark",
+    "colorPresetNord": "Nord",
+    "colorPresetOneDark": "One Dark",
+    "colorPresetCustom": "Custom",
+    "effortLow": "Low",
+    "effortMedium": "Medium",
+    "effortHigh": "High",
+    "customCliTitle": "Custom CLI Agents",
+    "customCliHint": "Add your own CLI agents. They will appear in the add-agent menu alongside built-in agents.",
+    "customCliRemove": "Remove",
+    "customCliNamePlaceholder": "Name",
+    "customCliIconPlaceholder": "Icon",
+    "customCliCommandPlaceholder": "Command (e.g. aider, cursor, cline)",
+    "customCliSandboxFlagPlaceholder": "Sandbox flag (optional, e.g. --sandbox)",
+    "customCliYoloFlagPlaceholder": "YOLO flag (optional, e.g. --yolo)",
+    "addCustomCli": "+ Add Custom CLI",
+    "alignLeft": "Left",
+    "alignCenter": "Center",
+    "alignRight": "Right",
+    "defaultColor": "Default",
+    "statuslineImportPlaceholder": "sessionId,tokens > cost | prompts",
+    "statuslineItems": {
+      "sessionId": {
+        "label": "Session ID",
+        "description": "First 8 chars of SDK session ID (click to resume)"
+      },
+      "gitBranch": {
+        "label": "Git Branch",
+        "description": "Current git branch name"
+      },
+      "tokens": {
+        "label": "Tokens",
+        "description": "Total input + output token count"
+      },
+      "turns": {
+        "label": "Turns",
+        "description": "Number of conversation turns"
+      },
+      "duration": {
+        "label": "Duration",
+        "description": "Session duration in seconds"
+      },
+      "contextPct": {
+        "label": "Context %",
+        "description": "Percentage of context window used"
+      },
+      "cost": {
+        "label": "Cost",
+        "description": "Total session cost in USD"
+      },
+      "workspace": {
+        "label": "Workspace",
+        "description": "Current workspace name"
+      },
+      "usage5h": {
+        "label": "5h Usage",
+        "description": "5-hour usage percentage"
+      },
+      "usage5hReset": {
+        "label": "5h Reset",
+        "description": "5-hour usage reset countdown"
+      },
+      "usage7d": {
+        "label": "7d Usage",
+        "description": "7-day usage percentage"
+      },
+      "usage7dReset": {
+        "label": "7d Reset",
+        "description": "7-day usage reset countdown"
+      },
+      "maxOut": {
+        "label": "Max Output",
+        "description": "Maximum output tokens for current model"
+      },
+      "cacheEff": {
+        "label": "Cache Eff.",
+        "description": "Cache read efficiency (cache_read / total_input)"
+      },
+      "prompts": {
+        "label": "Prompts",
+        "description": "Link to view prompt history"
+      }
+    }
   },
-
   "sidebar": {
     "workspaces": "Workspaces",
     "all": "All",
@@ -115,9 +203,18 @@
     "detachToWindow": "Detach to Window",
     "wakeAgent": "Wake Agent",
     "restAgent": "Rest Agent",
-    "closeWorkspace": "Close Workspace"
+    "closeWorkspace": "Close Workspace",
+    "colorNames": {
+      "red": "Red",
+      "orange": "Orange",
+      "yellow": "Yellow",
+      "green": "Green",
+      "blue": "Blue",
+      "purple": "Purple",
+      "pink": "Pink",
+      "gray": "Gray"
+    }
   },
-
   "profiles": {
     "title": "Profiles",
     "saveCurrent": "Save Current",
@@ -147,14 +244,12 @@
     "fetchingProfiles": "Fetching...",
     "currentTarget": "Current target"
   },
-
   "workspace": {
     "terminal": "Terminal",
     "files": "Files",
     "git": "Git",
     "github": "GitHub"
   },
-
   "github": {
     "pullRequests": "Pull Requests",
     "issues": "Issues",
@@ -183,7 +278,6 @@
     "commentPosted": "Comment posted",
     "commentError": "Failed to post comment"
   },
-
   "terminal": {
     "doubleClickToRename": "Double-click to rename",
     "hidePromptBox": "Hide prompt box",
@@ -194,14 +288,13 @@
     "addTerminalOrAgent": "Add Terminal or Agent",
     "terminalLabel": "Terminal",
     "expandThumbnails": "Expand Thumbnails",
-    "collapsePanel": "Collapse Panel"
+    "collapsePanel": "Collapse Panel",
+    "suggested": "suggested"
   },
-
   "dialogs": {
     "closeCodeAgent": "Close Code Agent?",
     "closeCodeAgentConfirm": "Are you sure you want to close the Code Agent terminal? Any running process will be terminated."
   },
-
   "snippets": {
     "title": "Snippets",
     "newSnippet": "New Snippet",
@@ -234,7 +327,6 @@
     "scopeWorkspace": "Workspace",
     "scopeToWorkspace": "Scope to this workspace"
   },
-
   "skills": {
     "title": "Skills",
     "searchSkills": "Search skills...",
@@ -247,7 +339,6 @@
     "noMatchingSkills": "No matching skills",
     "expandSkills": "Expand Skills"
   },
-
   "agents": {
     "title": "Agents",
     "searchAgents": "Search agents...",
@@ -255,7 +346,6 @@
     "noSession": "Start an Agent session to see available agents.",
     "noMatchingAgents": "No matching agents"
   },
-
   "about": {
     "title": "About",
     "appName": "Better Agent Terminal",
@@ -265,7 +355,6 @@
     "github": "GitHub",
     "builtWith": "Built with Electron, React, and xterm.js"
   },
-
   "update": {
     "newVersionAvailable": "New Version Available!",
     "currentVersion": "Current: v{{version}}",
@@ -273,7 +362,6 @@
     "whatsNew": "What's New:",
     "viewOnGithub": "View on GitHub"
   },
-
   "envVars": {
     "title": "Environment Variables",
     "workspaceHint": "Configure environment variables for this workspace. These will be applied to all terminals in this workspace.",
@@ -282,7 +370,6 @@
     "variableName": "Variable name",
     "value": "Value"
   },
-
   "git": {
     "commits": "Commits",
     "refresh": "Refresh",
@@ -300,9 +387,9 @@
     "justNow": "just now",
     "minutesAgo": "{{count}}m ago",
     "hoursAgo": "{{count}}h ago",
-    "daysAgo": "{{count}}d ago"
+    "daysAgo": "{{count}}d ago",
+    "main": "Main"
   },
-
   "claude": {
     "thinking": "Thinking",
     "loadOlderMessages": "Load older messages ({{count}} archived)",
@@ -374,15 +461,77 @@
     "placeholderStreaming": "Press Esc to pause, double-Esc to stop...",
     "permissionClickToCycle": "Permission: {{mode}} (click to cycle)",
     "modelClickToSelect": "Model: {{model}} (click to select)",
-    "clickToCopy": "Click to copy"
+    "clickToCopy": "Click to copy",
+    "permissionModeDefault": "✏ Ask before edits",
+    "permissionModeAcceptEdits": "✏ Auto-accept edits",
+    "permissionModeBypassPermissions": "⚠ Bypass permissions",
+    "permissionModeBypassPlan": "📋 Plan (auto-approve)",
+    "permissionModePlan": "📋 Plan mode",
+    "exitPlan": "Exit Plan",
+    "enterPlan": "Enter Plan",
+    "planTitle": "Plan",
+    "viewPlan": "View plan",
+    "taskLabel": "Task",
+    "agentLabel": "Agent",
+    "taskPromptTitle": "Task Prompt",
+    "taskResultTitle": "Task Result",
+    "taskOutputResultTitle": "TaskOutput Result",
+    "viewPromptLines": "View prompt ({{count}} lines)",
+    "viewResultLines": "View result ({{count}} lines)",
+    "fromTask": "from Task",
+    "editLabel": "Edit",
+    "writeLabel": "Write",
+    "collapse": "collapse",
+    "showAllLines": "Show all {{count}} lines...",
+    "taskOutputLabel": "TaskOutput",
+    "deferred": "deferred",
+    "reason": "Reason",
+    "in": "IN",
+    "linesUnit": "lines",
+    "lineCount": "{{count}} lines",
+    "systemReminderCount": "system-reminder ({{count}})",
+    "modelGroupBuiltin": "Better Agent Terminal",
+    "modelGroupSdk": "Claude Agent",
+    "noChangesDetectedInWorktree": "No changes detected in worktree.",
+    "viewWorktreeDiff": "View diff between worktree and source branch",
+    "confirmMergeWorktree": "Merge {{branch}} into {{sourceBranch}}?",
+    "fillMergeCommand": "Fill merge command for Claude to execute on host repo",
+    "confirmDiscardWorktree": "Discard worktree and all its changes?",
+    "worktreeDiscarded": "🗑️ Worktree discarded.",
+    "discardWorktreeAndDeleteBranch": "Discard worktree and delete branch",
+    "contextUsageTitle": "Context Usage — {{model}}",
+    "memoryFiles": "Memory Files",
+    "mcpTools": "MCP Tools"
   },
-
   "promptBox": {
     "placeholder": "Type your prompt here...",
     "placeholderWithImage": "Add text (optional), Ctrl+Enter to send",
     "sendToTerminal": "Send to terminal (Ctrl+Enter)",
     "imageAttached": "Image attached",
     "removeImage": "Remove image",
-    "hint": "Ctrl+Enter to send \u00b7 Paste images with Ctrl+V \u00b7 \u2191\u2193 history"
+    "hint": "Ctrl+Enter to send · Paste images with Ctrl+V · ↑↓ history"
+  },
+  "fileTree": {
+    "fileTooLarge": "File too large ({{size}}KB)",
+    "failedToLoadImage": "Failed to load image",
+    "previewNotAvailable": "Preview not available for this file type",
+    "pdfPreviewTitle": "PDF Preview: {{fileName}}",
+    "source": "Source",
+    "noFilesFound": "No files found",
+    "searchFiles": "Search files...",
+    "refresh": "Refresh",
+    "searching": "Searching...",
+    "noMatches": "No matches",
+    "selectFileToPreview": "Select a file to preview",
+    "copyRelativePath": "Copy Relative Path",
+    "copyAbsolutePath": "Copy Absolute Path",
+    "openInExplorer": "Open in Explorer",
+    "copyFilePath": "Copy file path",
+    "openWithDefaultApp": "Open with system default app",
+    "searchInPreview": "Search (Ctrl+F)",
+    "searchPlaceholder": "Search...",
+    "noResults": "No results",
+    "previousMatch": "Previous (Shift+Enter)",
+    "nextMatch": "Next (Enter)"
   }
 }
