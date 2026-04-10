@@ -899,6 +899,28 @@ function registerProxiedHandlers() {
     return { success: true }
   })
 
+  // Helper: build a friendly message when the `claude` CLI is not found.
+  function claudeNotFoundMessage(): string {
+    const installCmd = process.platform === 'win32'
+      ? 'npm install -g @anthropic-ai/claude-code\n\n  (run in PowerShell or Command Prompt as Administrator if needed)'
+      : process.platform === 'darwin'
+        ? 'npm install -g @anthropic-ai/claude-code\n\n  or via Homebrew: brew install claude'
+        : 'npm install -g @anthropic-ai/claude-code'
+    return (
+      'Claude Code CLI not found.\n\n' +
+      'Better Agent Terminal requires the Claude Code CLI to handle authentication.\n' +
+      'Install it by running:\n\n' +
+      `  ${installCmd}\n\n` +
+      'After installation, restart Better Agent Terminal and try /login again.\n\n' +
+      'Download Node.js (required for npm) from https://nodejs.org if not installed.'
+    )
+  }
+
+  // Helper: check if a child_process error is a missing-binary (ENOENT) error.
+  function isClaudeNotFound(err: NodeJS.ErrnoException): boolean {
+    return err.code === 'ENOENT' || /spawn claude ENOENT/i.test(err.message)
+  }
+
   // claude auth login — open browser-based login flow
   registerHandler('claude:auth-login', async () => {
     const { execFile } = await import('child_process')
@@ -906,7 +928,7 @@ function registerProxiedHandlers() {
       execFile('claude', ['auth', 'login'], { timeout: 60000, windowsHide: true }, (err) => {
         if (err) {
           logger.error('[auth-login]', err)
-          resolve({ success: false, error: err.message })
+          resolve({ success: false, error: isClaudeNotFound(err) ? claudeNotFoundMessage() : err.message })
         } else {
           resolve({ success: true })
         }
@@ -940,7 +962,7 @@ function registerProxiedHandlers() {
       execFile('claude', ['auth', 'logout'], { timeout: 10000, windowsHide: true }, (err) => {
         if (err) {
           logger.error('[auth-logout]', err)
-          resolve({ success: false, error: err.message })
+          resolve({ success: false, error: isClaudeNotFound(err) ? claudeNotFoundMessage() : err.message })
         } else {
           resolve({ success: true })
         }

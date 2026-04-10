@@ -119,6 +119,77 @@ npm run dev
 
 ## 新手第一次打開後，請照這個順序做
 
+### 第零步：綁定你的 Claude 帳號（最重要，不可跳過）
+
+Better Agent Terminal 依賴 **Claude Code CLI** 來驅動 AI 功能，所以你需要先安裝這個工具、建立帳號，並完成登入。
+
+#### 1. 安裝 Node.js（若尚未安裝）
+
+Claude Code CLI 需要 Node.js 18 以上版本。
+
+請到 [https://nodejs.org](https://nodejs.org) 下載並安裝 LTS 版本，或使用套件管理器：
+
+- **macOS**：`brew install node`
+- **Windows**：`winget install OpenJS.NodeJS.LTS`
+- **Linux**：`sudo apt install nodejs npm`（Ubuntu/Debian）
+
+安裝完成後，在終端機執行 `node --version` 確認版本 ≥ 18。
+
+#### 2. 安裝 Claude Code CLI
+
+開啟你的終端機（macOS：Terminal、Windows：PowerShell），執行：
+
+```bash
+npm install -g @anthropic-ai/claude-code
+```
+
+安裝完成後確認：
+
+```bash
+claude --version
+```
+
+有印出版本號就表示安裝成功。
+
+> **Windows 使用者注意**：如果 `npm install -g` 顯示權限錯誤，請以「系統管理員」身分重新開啟 PowerShell 再執行。
+
+#### 3. 建立 Claude 帳號
+
+如果你還沒有帳號，請先到 [https://claude.ai](https://claude.ai) 註冊。
+
+#### 4. 訂閱方案（擇一即可）
+
+| 方案 | 說明 | 適合對象 |
+|---|---|---|
+| **Claude Pro / Max**（訂閱制）| 每月固定費用，不用管 token 用量 | 想輕鬆開始的新手 |
+| **Claude API Key**（按量計費）| 依實際用量付費，需要另外申請 | 有開發需求的進階使用者 |
+
+> 訂閱或申請 API Key 請前往：[https://claude.ai/settings/billing](https://claude.ai/settings/billing)
+
+#### 5. 在 App 裡登入帳號
+
+1. 打開 Better Agent Terminal，新增任一工作區（見下方「第一步」）
+2. 點選工作區內的 **Claude Agent 面板**（左側面板或頂部分頁切換進去）
+3. 在下方輸入框輸入：
+   ```
+   /login
+   ```
+4. App 會開啟瀏覽器讓你完成 OAuth 授權，授權後回到 App 即完成綁定
+
+#### 6. 確認登入狀態
+
+輸入以下指令確認：
+```
+/whoami
+```
+如果看到你的 email 和方案資訊（例如 `you@example.com (claude_ai, pro)`），代表登入成功。
+
+> **看到「Claude Code CLI not found」錯誤？** 代表步驟 2 尚未完成，請先安裝 Claude Code CLI 並重新啟動 App。
+>
+> **沒看到帳號資訊？** 再輸入 `/login` 重新授權一次，或確認你的 Claude 帳號已有有效訂閱。
+
+---
+
 ### 第一步：新增一個工作區
 1. 看左邊側邊欄
 2. 點 **「+ 新增工作區」**
